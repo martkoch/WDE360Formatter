@@ -1,0 +1,80 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.sap.training.controller.Main"
+	xmlns:core="sap.ui.core">
+	<Panel id="__panel0" headerText="Flüge">
+		<content>
+			<Table id="idFlightTable" noDataText="Drop column list items here and columns in the area above"
+			    items="{
+			        path: '/data',
+			        sorter: [{ path : 'carrId', descending: true },
+			                 { path : 'connId', descending: false }]
+			        }">
+			    <headerToolbar>
+			        <Toolbar>
+			            <content>
+			                <ToolbarSpacer />
+			                <Select change="onAirlineChange">
+			                    <items>
+			                        <core:Item key="" text="" />
+			                        <core:Item key="AH" text="Lufthansa" />
+			                        <core:Item key="AZ" text="Alitalia" />
+			                        <core:Item key="JL" text="Japan Airlines" />
+			                    </items>
+			                </Select>
+			            </content>
+			        </Toolbar>
+			    </headerToolbar>
+				<items>
+					<ColumnListItem counter="0" id="__item0">
+						<cells>
+							<Text text="{ 
+							        path: 'carrId', 
+							        formatter: '.carrName'
+							       }" maxLines="0" id="__text5"/>
+							<Text text="{connId}" maxLines="0" id="__text6"/>
+							<Text text="{price}" maxLines="0" id="__text7"/>
+							<sap.ui.core:Icon src="{
+							        parts: [
+							            {
+							                path: 'seatsMax'
+							             },
+							             {
+							                path: 'seatsOcc'
+							              }],
+							        formatter: '.fr.availability'
+							    }" 
+							size="2em" xmlns:sap.ui.core="sap.ui.core" id="__icon0"/>
+							<Text text="{= ${seatsMax} - ${seatsOcc} }" maxLines="0" id="__text13"/></cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column id="__column0">
+						<header>
+							<Label text="Fluggesellschaft" id="__label0"/>
+						</header>
+					</Column>
+					<Column id="__column1">
+						<header>
+							<Label text="Flugverbindung" id="__label1"/>
+						</header>
+					</Column>
+					<Column id="__column2">
+						<header>
+							<Label text="Preis" id="__label2"/>
+						</header>
+					</Column>
+					<Column id="__column3">
+						<header>
+							<Label text="Verfügbarkeit" width="100%" id="__label3"/>
+						</header>
+					</Column>
+					<Column id="__column4">
+						<header>
+							<Label text="Freie Sitze" width="100%" id="__label4"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+		</content>
+	</Panel>
+</mvc:View>
